@@ -98,66 +98,61 @@ const partners = [
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
-      {/* Hero Section with Dynamic Elements */}
-      <section className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-background via-background to-background/80 dark:from-background dark:via-background/90 dark:to-background/70 flex items-center">
-        {/* Abstract background patterns */}
+      {/* Hero Section with Video Background */}
+      <section className="relative w-full min-h-screen overflow-hidden flex items-center">
+        {/* Video Background */}
         <div className="absolute inset-0 z-0">
-          {/* Grid pattern */}
-          <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#1f2937_1px,transparent_1px)] [background-size:20px_20px] opacity-30"></div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/file.mp4" type="video/mp4" />
+          </video>
+          {/* Overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 dark:from-black/90 dark:via-black/70 dark:to-black/50"></div>
           
-          {/* Glowing orbs */}
+          {/* Light accent elements that work with video */}
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-pulse-glow"></div>
           <div className="absolute bottom-1/3 right-1/3 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-glow animation-delay-2000"></div>
-          <div className="absolute top-1/2 right-1/4 w-[350px] h-[350px] bg-purple-500/10 rounded-full blur-[90px] animate-pulse-glow animation-delay-1000"></div>
-          
-          {/* Animated shapes */}
-          <div className="absolute top-20 right-[10%] w-24 h-24 border border-primary/20 rounded-full animate-orbit"></div>
-          <div className="absolute bottom-20 left-[15%] w-16 h-16 border border-primary/20 rounded-full animate-orbit animation-delay-2000"></div>
-          <div className="absolute top-[40%] left-[5%] w-32 h-32 border border-primary/10 rounded-full animate-float animation-delay-1000"></div>
-          
-          {/* Abstract patterns */}
-          <div className="absolute bottom-10 right-10 w-64 h-64 border border-primary/20 rounded-lg rotate-12 animate-float animation-delay-300"></div>
-          <div className="absolute top-20 left-[20%] w-24 h-24 border border-primary/10 rounded-lg -rotate-12 animate-float animation-delay-700"></div>
-          
-          {/* Light beams in dark mode only */}
-          <div className="hidden dark:block absolute top-0 left-1/4 w-1 h-[30vh] bg-gradient-to-b from-primary/20 via-primary/5 to-transparent rotate-12 animate-float animation-delay-500"></div>
-          <div className="hidden dark:block absolute top-0 right-1/3 w-1 h-[20vh] bg-gradient-to-b from-blue-500/20 via-blue-500/5 to-transparent -rotate-12 animate-float animation-delay-1500"></div>
         </div>
         
         <div className="container mx-auto px-4 pt-20 pb-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Column - Text Content - Spans 6 columns */}
-            <div className="lg:col-span-6 space-y-8 max-w-2xl mx-auto lg:mx-0">
-              <Badge className="inline-flex px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary backdrop-blur-sm border border-primary/20 rounded-full animate-slide-in-bottom">
+            {/* Content Column - Spans full width on mobile, 7 columns on desktop */}
+            <div className="lg:col-span-7 space-y-8 max-w-3xl mx-auto lg:mx-0">
+              <Badge className="inline-flex px-4 py-1.5 text-sm font-medium bg-primary/30 text-white backdrop-blur-sm border border-primary/20 rounded-full animate-slide-in-bottom">
                 Where AI, Democracy & Ethics Converge
               </Badge>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in text-white">
                 <span className="relative inline-block mb-2">
                   <span className="relative z-10">Future</span>
-                  <div className="absolute bottom-2 left-0 right-0 h-4 w-full bg-primary/20 rounded-full transform skew-x-3"></div>
+                  <div className="absolute bottom-2 left-0 right-0 h-4 w-full bg-primary/30 rounded-full transform skew-x-3"></div>
                 </span>
                 <br />
                 <span className="relative inline-block">
                   <span className="relative z-10">Shift</span>
-                  <div className="absolute bottom-2 left-0 right-0 h-4 w-full bg-primary/20 rounded-full transform -skew-x-3"></div>
+                  <div className="absolute bottom-2 left-0 right-0 h-4 w-full bg-primary/30 rounded-full transform -skew-x-3"></div>
                 </span>{" "}
                 <span className="text-gradient animate-shimmer bg-gradient-shimmer bg-clip-text text-transparent">Labs</span>
               </h1>
                 
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-xl animate-fade-in animation-delay-300">
+              <p className="text-xl text-white/90 leading-relaxed max-w-xl animate-fade-in animation-delay-300">
                 A global think tank operating at the frontier where AI, democracy, cybersecurity, ethics, and innovation converge to design a human-centered, just, and resilient future.
               </p>
                 
               <div className="flex flex-wrap gap-5 pt-4 animate-fade-in animation-delay-500">
-                <Button asChild size="lg" className="relative overflow-hidden group rounded-full shadow-lg shadow-primary/20">
+                <Button asChild size="lg" className="relative overflow-hidden group rounded-full shadow-lg shadow-primary/40 bg-primary/90 hover:bg-primary">
                   <Link href="/research">
                     <span className="relative z-10">Explore AI Governance</span>
                     <ArrowRight className="ml-2 h-5 w-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
                     <div className="absolute inset-0 bg-gradient-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" className="group rounded-full border-slate-300 dark:border-slate-700 hover:shadow-md transition-shadow duration-300">
+                <Button variant="outline" size="lg" className="group rounded-full border-white/30 text-white hover:bg-white/10 hover:text-white hover:shadow-md transition-all duration-300">
                   <Link href="/contact" className="flex items-center">
                     Get involved
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -170,42 +165,20 @@ export default function Home() {
                   <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-medium text-sm shadow-lg transform transition-transform hover:scale-110 hover:z-10">BU</div>
                   <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-medium text-sm shadow-lg transform transition-transform hover:scale-110 hover:z-10">PTS</div>
                   <div className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-medium text-sm shadow-lg transform transition-transform hover:scale-110 hover:z-10">OII</div>
-                  <div className="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center text-sm font-medium shadow-lg transform transition-transform hover:scale-110 hover:z-10">+15</div>
+                  <div className="w-10 h-10 rounded-full border-2 border-white/20 bg-white/10 text-white flex items-center justify-center text-sm font-medium shadow-lg transform transition-transform hover:scale-110 hover:z-10">+15</div>
                 </div>
-                <p className="text-sm text-muted-foreground">Partnered with leading institutions worldwide</p>
+                <p className="text-sm text-white/80">Partnered with leading institutions worldwide</p>
               </div>
             </div>
                 
-            {/* Right Column - Image & Floating Cards - Spans 6 columns */}
-            <div className="lg:col-span-6 relative h-[500px] lg:h-[600px]">
-              {/* Main Image with enhanced styling */}
-              <div className="relative h-full w-full overflow-hidden rounded-3xl shadow-2xl border border-slate-200/20 dark:border-slate-800/20 transform transition-transform duration-700 hover:scale-[1.02] group">
-                <Image
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-                  alt="Researchers discussing policy"
-                  fill
-                  className="object-cover transition-transform duration-10000 hover:scale-105"
-                  priority
-                />
-                {/* Enhanced gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-transparent"></div>
-                
-                {/* Image overlay content with enhanced styling */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent transform transition-transform duration-300 group-hover:translate-y-0 translate-y-2">
-                  <Badge variant="outline" className="bg-white/15 text-white border-white/20 mb-3 backdrop-blur-sm">
-                    Latest Publication
-                  </Badge>
-                  <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-primary transition-colors">The Future of AI Governance</h3>
-                  <p className="text-white/80 text-sm max-w-md">A comprehensive framework for responsible innovation and ethical implementation of artificial intelligence in policy making</p>
-                </div>
-              </div>
-              
+            {/* Floating Cards Column - 5 columns on desktop */}
+            <div className="lg:col-span-5 relative h-[300px] md:h-[400px] lg:h-[500px]">
               {/* Enhanced Floating Cards */}
               <FloatingCard
                 title="Research"
                 subtitle="Global Elections & AI Tracker"
                 icon={<FileText className="h-5 w-5 text-primary" />}
-                className="absolute -left-12 top-24 max-w-[250px] border border-slate-200/50 dark:border-slate-800/50 shadow-xl backdrop-blur-md animate-slide-in-left"
+                className="absolute left-0 top-10 max-w-[280px] border border-white/20 bg-black/30 shadow-xl backdrop-blur-md animate-slide-in-left z-20"
                 href="/research/ai-tracker"
                 animationDelay="animation-delay-1000"
                 variant="glass"
@@ -216,7 +189,7 @@ export default function Home() {
                 title="Event"
                 subtitle="Beyond AI Café"
                 icon={<CalendarDays className="h-5 w-5 text-primary" />}
-                className="absolute -right-8 bottom-20 max-w-[250px] border border-slate-200/50 dark:border-slate-800/50 shadow-xl backdrop-blur-md animate-slide-in-right"
+                className="absolute right-0 bottom-20 max-w-[280px] border border-white/20 bg-black/30 shadow-xl backdrop-blur-md animate-slide-in-right z-20"
                 href="/events/beyond-ai-cafe"
                 animationDelay="animation-delay-2000"
                 variant="glass"
@@ -227,7 +200,7 @@ export default function Home() {
                 title="Initiative"
                 subtitle="Digital Defenders"
                 icon={<Users2 className="h-5 w-5 text-primary" />}
-                className="absolute right-20 top-12 max-w-[250px] border border-slate-200/50 dark:border-slate-800/50 shadow-xl backdrop-blur-md animate-slide-in-bottom"
+                className="absolute right-10 top-1/4 max-w-[280px] border border-white/20 bg-black/30 shadow-xl backdrop-blur-md animate-slide-in-bottom z-10"
                 href="/initiatives/digital-defenders"
                 animationDelay="animation-delay-1500"
                 variant="glass"
@@ -238,7 +211,7 @@ export default function Home() {
           
           {/* Elegant scroll indicator with chevron animation */}
           <div 
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity group cursor-pointer"
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity group cursor-pointer z-20"
             onClick={() => {
               // Smoothly scroll to the services section
               document.querySelector('section:nth-of-type(2)')?.scrollIntoView({ 
@@ -246,14 +219,14 @@ export default function Home() {
               });
             }}
           >
-            <span className="text-xs uppercase tracking-widest mb-3 text-muted-foreground font-medium">Discover</span>
+            <span className="text-xs uppercase tracking-widest mb-3 text-white font-medium">Discover</span>
             <div className="flex flex-col items-center">
               <div className="h-10 w-6 relative overflow-hidden">
                 <div className="absolute inset-x-0 animate-slide-down animation-duration-2000 animation-infinite">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary group-hover:text-primary/80 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-primary transition-colors">
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary/50 group-hover:text-primary/30 transition-colors mt-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/50 group-hover:text-primary/70 transition-colors mt-1">
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
                 </div>
