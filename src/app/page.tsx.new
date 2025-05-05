@@ -14,7 +14,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 const featuredResearch = [
   {
     title: 'The Pervasive Influence of AI on Global Political Campaigns 2024',
-    description: 'Analysis of AI\'s dual role in enhancing voter outreach while enabling disinformation across 74 global elections.',
+    description: 'Analysis of AI's dual role in enhancing voter outreach while enabling disinformation across 74 global elections.',
     category: 'AI Governance',
     date: 'April 2025',
   },
