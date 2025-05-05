@@ -97,17 +97,17 @@ const partners = [
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col overflow-hidden">
       {/* Hero Section with Video Background */}
-      <section className="relative w-full min-h-screen overflow-hidden flex items-center">
-        {/* Video Background - Full coverage with no top margin/padding */}
-        <div className="absolute inset-0 z-0 top-0">
+      <section className="relative w-full min-h-screen overflow-hidden flex items-center mt-0">
+        {/* Video Background - Absolutely positioned with no spacing */}
+        <div className="absolute inset-0 z-0 top-0 left-0 right-0 bottom-0">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute top-0 left-0 right-0 bottom-0 w-full h-full object-cover"
           >
             <source src="/file.mp4" type="video/mp4" />
           </video>
@@ -115,7 +115,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
         
-        {/* Content container with proper spacing */}
+        {/* Content container adjusted to accommodate header height */}
         <div className="container mx-auto px-4 relative z-10 mt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Content Column - Text moved to align with screenshot */}

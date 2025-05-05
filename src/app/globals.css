@@ -69,9 +69,26 @@
 @layer base {
   * {
     @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
   body {
     @apply bg-background text-foreground;
+  }
+  
+  main {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 }
 

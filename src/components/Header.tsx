@@ -51,8 +51,8 @@ const Header = () => {
         className={cn(
           "w-full max-w-7xl rounded-full mx-auto transition-all duration-300",
           isScrolled 
-            ? "bg-gray-800/80 backdrop-blur-xl shadow-lg py-2 mt-2" 
-            : "bg-transparent py-3 mt-2"
+            ? "bg-gray-800/80 backdrop-blur-xl shadow-lg py-2 mt-3" 
+            : "bg-transparent py-3 mt-3"
         )}
       >
         <div className="px-8 flex items-center justify-between">

@@ -28,7 +28,7 @@ export default function RootLayout({
           enableSystem
         >
           <Header />
-          <main className="flex-1 pt-[3.5rem]">
+          <main className="flex-1 pt-0">
             {children}
           </main>
           <Footer />
