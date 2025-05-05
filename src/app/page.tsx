@@ -100,8 +100,8 @@ export default function Home() {
     <main className="flex min-h-screen flex-col">
       {/* Hero Section with Video Background */}
       <section className="relative w-full min-h-screen overflow-hidden flex items-center">
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0">
+        {/* Video Background - Full coverage with no top margin/padding */}
+        <div className="absolute inset-0 z-0 top-0">
           <video
             autoPlay
             muted
@@ -111,18 +111,15 @@ export default function Home() {
           >
             <source src="/file.mp4" type="video/mp4" />
           </video>
-          {/* Overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 dark:from-black/90 dark:via-black/70 dark:to-black/50"></div>
-          
-          {/* Light accent elements that work with video */}
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-pulse-glow"></div>
-          <div className="absolute bottom-1/3 right-1/3 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-glow animation-delay-2000"></div>
+          {/* Overlay adjusted for better visibility against the video */}
+          <div className="absolute inset-0 bg-black/30"></div>
         </div>
         
-        <div className="container mx-auto px-4 pt-20 pb-20 relative z-10">
+        {/* Content container with proper spacing */}
+        <div className="container mx-auto px-4 relative z-10 mt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Content Column - Spans full width on mobile, 7 columns on desktop */}
-            <div className="lg:col-span-7 space-y-8 max-w-3xl mx-auto lg:mx-0">
+            {/* Content Column - Text moved to align with screenshot */}
+            <div className="lg:col-span-7 space-y-8 max-w-3xl mx-auto lg:mx-0 pt-12">
               <Badge className="inline-flex px-4 py-1.5 text-sm font-medium bg-primary/30 text-white backdrop-blur-sm border border-primary/20 rounded-full animate-slide-in-bottom">
                 Where AI, Democracy & Ethics Converge
               </Badge>
@@ -137,7 +134,7 @@ export default function Home() {
                   <span className="relative z-10">Shift</span>
                   <div className="absolute bottom-2 left-0 right-0 h-4 w-full bg-primary/30 rounded-full transform -skew-x-3"></div>
                 </span>{" "}
-                <span className="text-gradient animate-shimmer bg-gradient-shimmer bg-clip-text text-transparent">Labs</span>
+                <span className="text-blue-500">Labs</span>
               </h1>
                 
               <p className="text-xl text-white/90 leading-relaxed max-w-xl animate-fade-in animation-delay-300">
@@ -145,11 +142,10 @@ export default function Home() {
               </p>
                 
               <div className="flex flex-wrap gap-5 pt-4 animate-fade-in animation-delay-500">
-                <Button asChild size="lg" className="relative overflow-hidden group rounded-full shadow-lg shadow-primary/40 bg-primary/90 hover:bg-primary">
+                <Button asChild size="lg" className="relative overflow-hidden group rounded-full shadow-lg shadow-primary/40 bg-blue-600 hover:bg-blue-700">
                   <Link href="/research">
                     <span className="relative z-10">Explore AI Governance</span>
                     <ArrowRight className="ml-2 h-5 w-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-                    <div className="absolute inset-0 bg-gradient-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" className="group rounded-full border-white/30 text-white hover:bg-white/10 hover:text-white hover:shadow-md transition-all duration-300">
@@ -171,14 +167,14 @@ export default function Home() {
               </div>
             </div>
                 
-            {/* Floating Cards Column - 5 columns on desktop */}
-            <div className="lg:col-span-5 relative h-[300px] md:h-[400px] lg:h-[500px]">
-              {/* Enhanced Floating Cards */}
+            {/* Floating Cards Column - Adjusted to match screenshot */}
+            <div className="lg:col-span-5 relative h-[300px] md:h-[400px] lg:h-[600px]">
+              {/* Enhanced Floating Cards - Positioned to match screenshot */}
               <FloatingCard
                 title="Research"
                 subtitle="Global Elections & AI Tracker"
-                icon={<FileText className="h-5 w-5 text-primary" />}
-                className="absolute left-0 top-10 max-w-[280px] border border-white/20 bg-black/30 shadow-xl backdrop-blur-md animate-slide-in-left z-20"
+                icon={<FileText className="h-5 w-5 text-blue-400" />}
+                className="absolute right-10 top-20 max-w-[280px] border border-blue-400/20 bg-black/40 shadow-xl backdrop-blur-md animate-slide-in-right z-30"
                 href="/research/ai-tracker"
                 animationDelay="animation-delay-1000"
                 variant="glass"
@@ -186,32 +182,32 @@ export default function Home() {
               />
               
               <FloatingCard
-                title="Event"
-                subtitle="Beyond AI Café"
-                icon={<CalendarDays className="h-5 w-5 text-primary" />}
-                className="absolute right-0 bottom-20 max-w-[280px] border border-white/20 bg-black/30 shadow-xl backdrop-blur-md animate-slide-in-right z-20"
-                href="/events/beyond-ai-cafe"
-                animationDelay="animation-delay-2000"
+                title="Initiative"
+                subtitle="Digital Defenders"
+                icon={<Users2 className="h-5 w-5 text-blue-400" />}
+                className="absolute right-40 top-64 max-w-[280px] border border-blue-400/20 bg-black/40 shadow-xl backdrop-blur-md animate-slide-in-bottom z-20"
+                href="/initiatives/digital-defenders"
+                animationDelay="animation-delay-1500"
                 variant="glass"
                 hoverEffect="glow"
               />
               
               <FloatingCard
-                title="Initiative"
-                subtitle="Digital Defenders"
-                icon={<Users2 className="h-5 w-5 text-primary" />}
-                className="absolute right-10 top-1/4 max-w-[280px] border border-white/20 bg-black/30 shadow-xl backdrop-blur-md animate-slide-in-bottom z-10"
-                href="/initiatives/digital-defenders"
-                animationDelay="animation-delay-1500"
+                title="Event"
+                subtitle="Beyond AI Café"
+                icon={<CalendarDays className="h-5 w-5 text-blue-400" />}
+                className="absolute right-0 bottom-40 max-w-[280px] border border-blue-400/20 bg-black/40 shadow-xl backdrop-blur-md animate-slide-in-left z-10"
+                href="/events/beyond-ai-cafe"
+                animationDelay="animation-delay-2000"
                 variant="glass"
                 hoverEffect="glow"
               />
             </div>
           </div>
           
-          {/* Elegant scroll indicator with chevron animation */}
+          {/* Elegant scroll indicator with chevron animation - Adjusted position */}
           <div 
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity group cursor-pointer z-20"
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity group cursor-pointer z-20"
             onClick={() => {
               // Smoothly scroll to the services section
               document.querySelector('section:nth-of-type(2)')?.scrollIntoView({ 
@@ -219,14 +215,14 @@ export default function Home() {
               });
             }}
           >
-            <span className="text-xs uppercase tracking-widest mb-3 text-white font-medium">Discover</span>
+            <span className="text-xs uppercase tracking-widest mb-3 text-white font-medium">DISCOVER</span>
             <div className="flex flex-col items-center">
               <div className="h-10 w-6 relative overflow-hidden">
                 <div className="absolute inset-x-0 animate-slide-down animation-duration-2000 animation-infinite">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-primary transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-blue-400 transition-colors">
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/50 group-hover:text-primary/70 transition-colors mt-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/50 group-hover:text-blue-400/70 transition-colors mt-1">
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
                 </div>

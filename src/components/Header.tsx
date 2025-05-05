@@ -46,21 +46,21 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center">
       <div 
         className={cn(
-          "w-full max-w-6xl rounded-full mx-auto transition-all duration-300 mt-3",
+          "w-full max-w-7xl rounded-full mx-auto transition-all duration-300",
           isScrolled 
-            ? "bg-background/85 backdrop-blur-xl shadow-lg py-2" 
-            : "bg-background/50 backdrop-blur-md py-3 shadow-md"
+            ? "bg-gray-800/80 backdrop-blur-xl shadow-lg py-2 mt-2" 
+            : "bg-transparent py-3 mt-2"
         )}
       >
-        <div className="px-4 sm:px-6 flex items-center justify-between">
+        <div className="px-8 flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
-            <div className="bg-primary text-primary-foreground rounded-lg flex items-center justify-center font-bold text-xl w-8 h-8">
-              P
+            <div className="bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-xl w-8 h-8">
+              F
             </div>
-            <span className="font-bold">PolicyLab</span>
+            <span className="font-bold text-white">Future Shift Labs</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -71,10 +71,10 @@ const Header = () => {
                   key={item.href} 
                   href={item.href} 
                   className={cn(
-                    "px-3 py-1.5 rounded-full text-sm font-medium transition-all",
+                    "px-3 py-1.5 rounded-full text-sm font-medium transition-all text-white/80 hover:text-white",
                     isActive(item.href)
-                      ? "bg-primary/10 text-primary" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/70"
+                      ? "text-white" 
+                      : ""
                   )}
                 >
                   {item.label}
@@ -85,7 +85,7 @@ const Header = () => {
               <ThemeToggle />
               <Button 
                 size="sm" 
-                className="rounded-full"
+                className="rounded-full bg-blue-600 hover:bg-blue-700 text-white"
                 asChild
               >
                 <Link href="/contact">Get in Touch</Link>
@@ -100,7 +100,7 @@ const Header = () => {
               variant="ghost" 
               size="icon" 
               onClick={toggleMenu}
-              className="rounded-full"
+              className="rounded-full text-white"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -115,17 +115,17 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden px-4 pb-4 mt-4">
-            <nav className="bg-background/95 backdrop-blur-xl rounded-2xl p-3 shadow-lg">
+            <nav className="bg-gray-900/95 backdrop-blur-xl rounded-2xl p-3 shadow-lg">
               <div className="flex flex-col space-y-1.5">
                 {navItems.map((item) => (
                   <Link 
                     key={item.href} 
                     href={item.href} 
                     className={cn(
-                      "px-4 py-2.5 rounded-xl text-sm font-medium transition-colors",
+                      "px-4 py-2.5 rounded-xl text-sm font-medium transition-colors text-white/80 hover:text-white",
                       isActive(item.href)
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/70"
+                        ? "bg-blue-600/20 text-white"
+                        : ""
                     )}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -133,7 +133,7 @@ const Header = () => {
                   </Link>
                 ))}
                 <div className="pt-2">
-                  <Button size="sm" className="w-full rounded-xl" asChild>
+                  <Button size="sm" className="w-full rounded-xl bg-blue-600 hover:bg-blue-700" asChild>
                     <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Get in Touch</Link>
                   </Button>
                 </div>

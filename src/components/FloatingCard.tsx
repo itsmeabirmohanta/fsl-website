@@ -47,13 +47,13 @@ export function FloatingCard({
   const variantClass = React.useMemo(() => {
     switch (variant) {
       case "primary":
-        return "bg-primary/90 text-primary-foreground dark:bg-primary/80";
+        return "bg-blue-600/90 text-white dark:bg-blue-600/80";
       case "secondary":
         return "bg-secondary/90 text-secondary-foreground dark:bg-secondary/80";
       case "outlined":
-        return "bg-transparent border-2 border-primary/30 dark:border-primary/20";
+        return "bg-transparent border-2 border-blue-400/30 dark:border-blue-400/20";
       case "glass":
-        return "bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/10 dark:border-slate-700/30";
+        return "bg-black/40 backdrop-blur-md border border-blue-400/20";
       default:
         return "bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-slate-200 dark:border-slate-800";
     }
@@ -65,7 +65,7 @@ export function FloatingCard({
       case "lift":
         return "transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
       case "glow":
-        return "transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 dark:hover:shadow-primary/10";
+        return "transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20";
       case "scale":
         return "transition-all duration-300 hover:scale-105";
       case "none":
@@ -86,22 +86,23 @@ export function FloatingCard({
         className
       )}
     >
-      {icon && (
-        <div className={cn(
-          "mb-2",
-          variant === "primary" || variant === "secondary" 
-            ? "text-current" 
-            : "text-primary"
-        )}>
-          {icon}
-        </div>
-      )}
-      <h3 className="text-sm font-semibold">{title}</h3>
+      <div className="flex items-center gap-3 mb-2">
+        {icon && (
+          <div className={cn(
+            variant === "primary" || variant === "secondary" 
+              ? "text-white" 
+              : "text-blue-400"
+          )}>
+            {icon}
+          </div>
+        )}
+        <h3 className="text-sm font-medium text-white">{title}</h3>
+      </div>
       <p className={cn(
-        "text-xs",
+        "text-sm",
         variant === "primary" || variant === "secondary"
-          ? "text-current/80"
-          : "text-slate-600 dark:text-slate-400"
+          ? "text-white/80"
+          : "text-white/80"
       )}>{subtitle}</p>
     </div>
   );
