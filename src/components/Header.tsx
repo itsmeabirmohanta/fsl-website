@@ -25,6 +25,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -51,16 +56,16 @@ const Header = () => {
         className={cn(
           "w-full max-w-7xl rounded-full mx-auto transition-all duration-300",
           isScrolled 
-            ? "bg-gray-800/80 backdrop-blur-xl shadow-lg py-2 mt-3" 
-            : "bg-transparent py-3 mt-3"
+            ? "bg-gray-800/80 dark:bg-slate-800/80 backdrop-blur-xl shadow-lg py-2 mt-3" 
+            : "bg-transparent dark:bg-transparent py-3 mt-3"
         )}
       >
-        <div className="px-8 flex items-center justify-between">
+        <div className="px-4 sm:px-8 flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
             <div className="bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-xl w-8 h-8">
               F
             </div>
-            <span className="font-bold text-white">Future Shift Labs</span>
+            <span className="font-bold text-white dark:text-white">Future Shift Labs</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -71,9 +76,9 @@ const Header = () => {
                   key={item.href} 
                   href={item.href} 
                   className={cn(
-                    "px-3 py-1.5 rounded-full text-sm font-medium transition-all text-white/80 hover:text-white",
+                    "px-3 py-1.5 rounded-full text-sm font-medium transition-all text-white/80 dark:text-white/80 hover:text-white dark:hover:text-white",
                     isActive(item.href)
-                      ? "text-white" 
+                      ? "text-white dark:text-white" 
                       : ""
                   )}
                 >
@@ -100,7 +105,7 @@ const Header = () => {
               variant="ghost" 
               size="icon" 
               onClick={toggleMenu}
-              className="rounded-full text-white"
+              className="rounded-full text-white dark:text-white hover:bg-white/10 dark:hover:bg-slate-700/50"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -115,16 +120,16 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden px-4 pb-4 mt-4">
-            <nav className="bg-gray-900/95 backdrop-blur-xl rounded-2xl p-3 shadow-lg">
+            <nav className="bg-gray-900/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl p-3 shadow-lg">
               <div className="flex flex-col space-y-1.5">
                 {navItems.map((item) => (
                   <Link 
                     key={item.href} 
                     href={item.href} 
                     className={cn(
-                      "px-4 py-2.5 rounded-xl text-sm font-medium transition-colors text-white/80 hover:text-white",
+                      "px-4 py-2.5 rounded-xl text-sm font-medium transition-colors text-white/80 dark:text-white/80 hover:text-white dark:hover:text-white",
                       isActive(item.href)
-                        ? "bg-blue-600/20 text-white"
+                        ? "bg-blue-600/20 text-white dark:text-white"
                         : ""
                     )}
                     onClick={() => setIsMenuOpen(false)}

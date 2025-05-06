@@ -349,19 +349,19 @@ export default async function ContactPage() {
             Follow us on social media to stay updated with our latest research, events, and policy insights.
           </p>
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in animation-delay-500">
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white hover:text-primary" asChild>
+            <Button size="lg" variant="white" className="rounded-md" asChild>
               <Link href="https://twitter.com/futureshiftlabs">
                 <Twitter className="mr-2 h-5 w-5" />
                 Twitter
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white hover:text-primary" asChild>
+            <Button size="lg" variant="white" className="rounded-md" asChild>
               <Link href="https://linkedin.com/company/futureshiftlabs">
                 <Linkedin className="mr-2 h-5 w-5" />
                 LinkedIn
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white hover:text-primary" asChild>
+            <Button size="lg" variant="white" className="rounded-md" asChild>
               <Link href="https://futureshiftlabs.org">
                 <Globe className="mr-2 h-5 w-5" />
                 Website

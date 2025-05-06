@@ -148,8 +148,8 @@ export default function Home() {
                     <ArrowRight className="ml-2 h-5 w-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" className="group rounded-full border-white/30 text-white hover:bg-white/10 hover:text-white hover:shadow-md transition-all duration-300">
-                  <Link href="/contact" className="flex items-center">
+                <Button variant="white" size="lg" className="group rounded-full">
+                  <Link href="/contact" className="flex items-center text-slate-900">
                     Get involved
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
@@ -173,34 +173,34 @@ export default function Home() {
               <FloatingCard
                 title="Research"
                 subtitle="Global Elections & AI Tracker"
-                icon={<FileText className="h-5 w-5 text-blue-400" />}
-                className="absolute right-10 top-20 max-w-[280px] border border-blue-400/20 bg-black/40 shadow-xl backdrop-blur-md animate-slide-in-right z-30"
+                icon={<FileText className="h-5 w-5" />}
+                className="absolute right-10 top-20 max-w-[280px] z-30"
                 href="/research/ai-tracker"
                 animationDelay="animation-delay-1000"
-                variant="glass"
+                variant="frosted"
                 hoverEffect="glow"
               />
               
               <FloatingCard
                 title="Initiative"
                 subtitle="Digital Defenders"
-                icon={<Users2 className="h-5 w-5 text-blue-400" />}
-                className="absolute right-40 top-64 max-w-[280px] border border-blue-400/20 bg-black/40 shadow-xl backdrop-blur-md animate-slide-in-bottom z-20"
+                icon={<Users2 className="h-5 w-5" />}
+                className="absolute right-40 top-64 max-w-[280px] z-20"
                 href="/initiatives/digital-defenders"
                 animationDelay="animation-delay-1500"
                 variant="glass"
-                hoverEffect="glow"
+                hoverEffect="lift"
               />
               
               <FloatingCard
                 title="Event"
                 subtitle="Beyond AI Café"
-                icon={<CalendarDays className="h-5 w-5 text-blue-400" />}
-                className="absolute right-0 bottom-40 max-w-[280px] border border-blue-400/20 bg-black/40 shadow-xl backdrop-blur-md animate-slide-in-left z-10"
+                icon={<CalendarDays className="h-5 w-5" />}
+                className="absolute right-0 bottom-40 max-w-[280px] z-10"
                 href="/events/beyond-ai-cafe"
                 animationDelay="animation-delay-2000"
-                variant="glass"
-                hoverEffect="glow"
+                variant="frosted"
+                hoverEffect="scale"
               />
             </div>
           </div>
@@ -250,7 +250,9 @@ export default function Home() {
                 icon={<service.icon className="h-8 w-8" />}
                 href={service.href}
                 animationDelay={`animation-delay-${index * 300}`}
-                className="animate-fade-in"
+                className="animate-fade-in h-full"
+                variant={index % 3 === 0 ? "default" : index % 3 === 1 ? "gradient" : "accent"}
+                hoverEffect={index % 2 === 0 ? "lift" : "glow"}
               />
             ))}
           </div>
@@ -267,7 +269,7 @@ export default function Home() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow group hover-lift animate-fade-in">
+            <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow group hover-lift animate-fade-in" variant="elevated">
               <div className="relative h-48">
                 <Image
                   src="https://images.unsplash.com/photo-1569511166187-97eb6e387e19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
@@ -297,7 +299,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow group hover-lift animate-fade-in animation-delay-300">
+            <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow group hover-lift animate-fade-in animation-delay-300" variant="elevated">
               <div className="relative h-48">
                 <Image
                   src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
@@ -327,7 +329,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow group hover-lift animate-fade-in animation-delay-500">
+            <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow group hover-lift animate-fade-in animation-delay-500" variant="elevated">
               <div className="relative h-48">
                 <Image
                   src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"

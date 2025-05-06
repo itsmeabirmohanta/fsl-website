@@ -10,7 +10,7 @@ type FloatingCardProps = {
   className?: string;
   animationDelay?: string;
   animationStyle?: "float" | "bounce" | "scale" | "slide" | "none";
-  variant?: "default" | "primary" | "secondary" | "outlined" | "glass";
+  variant?: "default" | "primary" | "secondary" | "outlined" | "glass" | "frosted";
   hoverEffect?: "lift" | "glow" | "scale" | "none";
 };
 
@@ -47,13 +47,15 @@ export function FloatingCard({
   const variantClass = React.useMemo(() => {
     switch (variant) {
       case "primary":
-        return "bg-blue-600/90 text-white dark:bg-blue-600/80";
+        return "bg-gradient-to-br from-blue-600/90 to-blue-700/80 text-white dark:from-blue-600/90 dark:to-blue-800/80";
       case "secondary":
-        return "bg-secondary/90 text-secondary-foreground dark:bg-secondary/80";
+        return "bg-gradient-to-br from-secondary/80 to-secondary-foreground/20 text-secondary-foreground dark:from-secondary/80 dark:to-secondary/40";
       case "outlined":
         return "bg-transparent border-2 border-blue-400/30 dark:border-blue-400/20";
       case "glass":
-        return "bg-black/40 backdrop-blur-md border border-blue-400/20";
+        return "bg-black/40 backdrop-blur-md border border-white/10 text-white shadow-xl";
+      case "frosted":
+        return "bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-2xl";
       default:
         return "bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-slate-200 dark:border-slate-800";
     }
@@ -78,7 +80,7 @@ export function FloatingCard({
   const content = (
     <div
       className={cn(
-        "rounded-xl p-4 shadow-lg",
+        "rounded-xl p-5 shadow-lg relative overflow-hidden",
         variantClass,
         hoverClass,
         animationClass,
@@ -86,29 +88,48 @@ export function FloatingCard({
         className
       )}
     >
-      <div className="flex items-center gap-3 mb-2">
-        {icon && (
-          <div className={cn(
-            variant === "primary" || variant === "secondary" 
-              ? "text-white" 
-              : "text-blue-400"
+      {/* Decorative elements */}
+      <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full bg-white/5 z-0"></div>
+      <div className="absolute -bottom-8 -left-8 w-16 h-16 rounded-full bg-white/5 z-0"></div>
+      
+      {/* Content container with improved spacing */}
+      <div className="relative z-10">
+        <div className="flex items-center gap-3 mb-3">
+          {icon && (
+            <div className={cn(
+              "p-2 rounded-full",
+              variant === "primary" || variant === "secondary" 
+                ? "bg-white/10 text-white" 
+                : "bg-blue-400/10 text-blue-400"
+            )}>
+              {icon}
+            </div>
+          )}
+          <h3 className={cn(
+            "text-sm font-semibold",
+            variant === "default" ? "text-primary" : "text-white"
           )}>
-            {icon}
-          </div>
-        )}
-        <h3 className="text-sm font-medium text-white">{title}</h3>
+            {title}
+          </h3>
+        </div>
+        <p className={cn(
+          "text-sm",
+          variant === "primary" || variant === "secondary" || variant === "glass" || variant === "frosted"
+            ? "text-white/80"
+            : "text-slate-600 dark:text-slate-300"
+        )}>
+          {subtitle}
+        </p>
       </div>
-      <p className={cn(
-        "text-sm",
-        variant === "primary" || variant === "secondary"
-          ? "text-white/80"
-          : "text-white/80"
-      )}>{subtitle}</p>
     </div>
   );
 
   if (href) {
-    return <Link href={href}>{content}</Link>;
+    return (
+      <Link href={href} className="block">
+        {content}
+      </Link>
+    );
   }
 
   return content;
