@@ -327,10 +327,10 @@ export default function TeamPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end justify-center p-4">
                     <div className="flex gap-2 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      <Button size="sm" variant="outline" className="rounded-full bg-white/20 backdrop-blur-sm border-white/30 text-white">
+                      <Button size="sm" variant="white-outline" className="rounded-full">
                         <Mail className="h-4 w-4" />
                       </Button>
-                      <Button size="sm" variant="outline" className="rounded-full bg-white/20 backdrop-blur-sm border-white/30 text-white">
+                      <Button size="sm" variant="white-outline" className="rounded-full">
                         <Linkedin className="h-4 w-4" />
                       </Button>
                     </div>
@@ -363,7 +363,7 @@ export default function TeamPage() {
                 <div className="p-6">
                   <h3 className="text-lg font-semibold mb-2">Research Associate</h3>
                   <p className="text-sm mb-4 text-white/80">Join our research team to explore cutting-edge policy solutions.</p>
-                  <Button size="sm" variant="outline" className="w-full border-white/30 text-white hover:bg-white hover:text-primary">
+                  <Button size="sm" variant="white" className="w-full">
                     <span>View Position</span>
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
@@ -374,7 +374,7 @@ export default function TeamPage() {
                 <div className="p-6">
                   <h3 className="text-lg font-semibold mb-2">Policy Analyst</h3>
                   <p className="text-sm mb-4 text-white/80">Help shape evidence-based policy recommendations.</p>
-                  <Button size="sm" variant="outline" className="w-full border-white/30 text-white hover:bg-white hover:text-primary">
+                  <Button size="sm" variant="white" className="w-full">
                     <span>View Position</span>
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
@@ -385,7 +385,7 @@ export default function TeamPage() {
                 <div className="p-6">
                   <h3 className="text-lg font-semibold mb-2">Communications Specialist</h3>
                   <p className="text-sm mb-4 text-white/80">Share our vision through compelling content and media.</p>
-                  <Button size="sm" variant="outline" className="w-full border-white/30 text-white hover:bg-white hover:text-primary">
+                  <Button size="sm" variant="white" className="w-full">
                     <span>View Position</span>
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
@@ -395,8 +395,8 @@ export default function TeamPage() {
             
             <Button 
               size="lg" 
-              variant="outline" 
-              className="group bg-transparent border-white text-white hover:bg-white hover:text-primary"
+              variant="white"
+              className="group rounded-md"
             >
               <span>View All Open Positions</span>
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

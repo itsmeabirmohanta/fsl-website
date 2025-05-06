@@ -169,8 +169,8 @@ export default function AboutPage() {
           </p>
           <Button 
             size="lg" 
-            variant="outline" 
-            className="group bg-transparent border-white text-white hover:bg-white hover:text-primary"
+            variant="white" 
+            className="group rounded-md"
             asChild
           >
             <a href="/contact">
