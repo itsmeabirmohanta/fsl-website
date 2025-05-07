@@ -40,7 +40,7 @@ const upcomingEvents = [
     date: 'Summer 2025',
     location: 'Multiple Venues',
     type: 'Lecture Series',
-    description: 'A series of lectures featuring world leaders like Audrey Tang, Kai-Fu Lee, and Nina Schick on AI\'s future.',
+    description: 'A series of lectures featuring world leaders like Audrey Tang, Kai-Fu Lee, and Nina Schick on AI&apos;s future.',
     imageUrl: EVENT_IMAGES.LECTURE_SERIES,
   },
   {
@@ -591,9 +591,9 @@ export default function Home() {
                   <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-blue-800 bg-yellow-100 flex items-center justify-center text-blue-800 text-xs font-bold">M</div>
                 </div>
                 <span className="text-white/80 text-xs md:text-sm">Trusted by experts from global organizations</span>
-                      </div>
-                    </div>
-                    
+              </div>
+            </div>
+            
             {/* Right column - Newsletter and preview */}
             <div className="lg:w-1/2 lg:pl-8">
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-xl border border-white/10 animate-fade-in animation-delay-500">

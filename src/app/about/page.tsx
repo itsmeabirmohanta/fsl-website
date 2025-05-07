@@ -1,5 +1,3 @@
-'use client';
-
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,10 +16,10 @@ import {
 } from 'lucide-react';
 import { ORGANIZATION_IMAGES, PROFILE_IMAGES } from '@/lib/constants/images';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'About Us | Future Shift Labs',
   description: 'Our journey, mission, and team. Future Shift Labs is a global think tank at the frontier where AI, democracy, cybersecurity, ethics, and innovation converge.',
-};
+} satisfies Metadata;
 
 export default function AboutPage() {
   const values = [

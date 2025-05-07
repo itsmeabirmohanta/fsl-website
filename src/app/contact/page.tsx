@@ -112,8 +112,7 @@ export default async function ContactPage() {
               </span>
             </h1>
             <p className="mx-auto mb-8 max-w-3xl text-xl text-muted-foreground animate-fade-in animation-delay-300">
-              Whether you're interested in research collaboration, policy consulting, or just want to learn more
-              about our work in responsible AI development, we're here to help.
+              We&apos;re here to help and answer any questions you might have.
             </p>
           </div>
         </div>
@@ -187,7 +186,7 @@ export default async function ContactPage() {
                   <div className="absolute inset-0 bg-gradient-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </Button>
                 <p className="text-xs text-muted-foreground text-center mt-3">
-                  We'll respond to your inquiry within 48 hours.
+                  We&apos;ll get back to you soon!
                 </p>
               </form>
             </Card>
@@ -330,7 +329,7 @@ export default async function ContactPage() {
             ))}
             
             <Card className="p-6 mt-4 text-center bg-muted/30 animate-fade-in animation-delay-1500">
-              <p className="mb-4">Don't see your question here?</p>
+              <p className="mb-4">Don&apos;t see your question here?</p>
               <Button asChild>
                 <a href="#top">Contact Us Directly</a>
               </Button>

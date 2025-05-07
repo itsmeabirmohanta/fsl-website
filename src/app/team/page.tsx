@@ -355,7 +355,7 @@ export default function TeamPage() {
           <div className="max-w-3xl mx-auto">
             <h2 className="mb-4 text-3xl font-bold">Join Our Team</h2>
             <p className="mx-auto mb-8 text-xl text-primary-foreground/80">
-              We're looking for talented individuals passionate about making a difference through policy research and advocacy for responsible AI.
+              We&apos;re always looking for talented individuals to join our team.
             </p>
             
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8">

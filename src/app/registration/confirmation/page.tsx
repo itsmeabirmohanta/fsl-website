@@ -156,7 +156,7 @@ END:VCALENDAR`;
                   <Info className="h-5 w-5 mr-3 text-slate-500 flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-slate-600 dark:text-slate-300">
                     <p className="font-medium mb-1">Next Steps:</p>
-                    <p>We've sent a confirmation email with all the details. Please check your inbox 
+                    <p>We&apos;ve sent a confirmation email with all the details. Please check your inbox 
                     (and spam folder) for an email from <strong>events@futureshiftlabs.org</strong></p>
                   </div>
                 </div>
