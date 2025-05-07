@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="240" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="120" fill="white"/>
+  <g transform="translate(20, 40)">
+    <!-- Partnership on AI Logo -->
+    <text x="100" y="20" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="16" fill="#3949AB">PARTNERSHIP</text>
+    <text x="100" y="40" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="16" fill="#3949AB">ON AI</text>
+    
+    <!-- Connected nodes graphic element -->
+    <circle cx="40" cy="20" r="7" fill="#3949AB"/>
+    <circle cx="65" cy="10" r="5" fill="#3949AB" opacity="0.7"/>
+    <circle cx="70" cy="35" r="6" fill="#3949AB" opacity="0.8"/>
+    
+    <path d="M40,20 L65,10" stroke="#3949AB" stroke-width="1.5"/>
+    <path d="M40,20 L70,35" stroke="#3949AB" stroke-width="1.5"/>
+    <path d="M65,10 L70,35" stroke="#3949AB" stroke-width="1.5"/>
+    
+    <!-- Human and tech partnership element -->
+    <circle cx="140" cy="20" r="6" fill="#3949AB" opacity="0.7"/>
+    <circle cx="160" cy="20" r="6" fill="#3949AB" opacity="0.7"/>
+    <path d="M140,20 L160,20" stroke="#3949AB" stroke-width="2"/>
+    <path d="M140,26 Q150,40 160,26" stroke="#3949AB" stroke-width="1.5" fill="none"/>
+  </g>
+</svg> 

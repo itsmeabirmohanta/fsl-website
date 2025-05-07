@@ -1,182 +1,180 @@
+'use client';
+
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowRight, Users2, Lightbulb, BookOpen, Target, BarChart3, Globe2, Scale } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { PageHeader } from '@/components/PageHeader';
+import { SectionHeader } from '@/components/SectionHeader';
+import { 
+  Users2, 
+  Lightbulb, 
+  BookOpen, 
+  Scale,
+  ArrowRight,
+  ChevronRight
+} from 'lucide-react';
+import { ORGANIZATION_IMAGES, PROFILE_IMAGES } from '@/lib/constants/images';
 
 export const metadata: Metadata = {
   title: 'About Us | Future Shift Labs',
-  description: 'Learn about our mission, values, and commitment to responsible AI development.',
+  description: 'Our journey, mission, and team. Future Shift Labs is a global think tank at the frontier where AI, democracy, cybersecurity, ethics, and innovation converge.',
 };
 
 export default function AboutPage() {
   const values = [
     {
-      title: 'Openness',
-      description: 'We encourage imagination and thoroughness, embracing diverse ideas for impactful solutions.',
+      title: 'Open Research',
+      description: 'We foster intellectual imagination and thoroughness, embracing diverse perspectives to create breakthrough solutions.',
       icon: BookOpen,
+      bgColor: 'bg-blue-50 dark:bg-blue-950/40',
+      iconColor: 'text-blue-600 dark:text-blue-400',
     },
     {
-      title: 'Diverse yet Inclusive',
-      description: 'We ensure everyone feels welcome and respected, making research accessible and equitable.',
+      title: 'Diverse & Inclusive',
+      description: 'We cultivate an environment where everyone feels welcomed, respected, and heard, ensuring our research is accessible and equitable.',
       icon: Users2,
+      bgColor: 'bg-purple-50 dark:bg-purple-950/40',
+      iconColor: 'text-purple-600 dark:text-purple-400',
     },
     {
-      title: 'Innovation',
-      description: 'We focus on critical thinking and human-centered, creative solutions.',
+      title: 'Human-Centered Innovation',
+      description: 'We place people at the heart of AI innovation, focusing on ethical applications that solve real human challenges.',
       icon: Lightbulb,
+      bgColor: 'bg-amber-50 dark:bg-amber-950/40',
+      iconColor: 'text-amber-600 dark:text-amber-400',
+    },
+    {
+      title: 'Ethical Governance',
+      description: 'We promote responsible AI development with robust governance frameworks that prioritize fairness, transparency, and accountability.',
+      icon: Scale,
+      bgColor: 'bg-emerald-50 dark:bg-emerald-950/40',
+      iconColor: 'text-emerald-600 dark:text-emerald-400',
     },
   ];
 
-  const services = [
-    {
-      title: 'Research & Analysis',
-      description: 'Conducts thorough studies on the impacts of emerging AI technologies and global AI policies.',
-      icon: BarChart3,
+  const partners = [
+    { 
+      name: 'Oxford Internet Institute', 
+      logo: '/images/partners/real/oii.svg',
+      url: 'https://www.oii.ox.ac.uk/'
     },
-    {
-      title: 'Advocacy for Positive AI Use',
-      description: 'Promotes the responsible application of AI through public campaigns and professional training.',
-      icon: Scale,
+    { 
+      name: 'Alan Turing Institute', 
+      logo: '/images/partners/real/turing.svg',
+      url: 'https://www.turing.ac.uk/'
     },
-    {
-      title: 'Strategic Consulting Services',
-      description: 'Develop practical, product-driven solutions for real-world applications in sectors like governance, healthcare, and education.',
-      icon: Target,
+    { 
+      name: 'Stanford HAI', 
+      logo: '/images/partners/real/stanford-hai.svg',
+      url: 'https://hai.stanford.edu/'
     },
-    {
-      title: 'Collaboration and Knowledge Sharing',
-      description: 'Fosters partnerships among researchers, policymakers, and industry leaders.',
-      icon: Users2,
+    { 
+      name: 'Partnership on AI', 
+      logo: '/images/partners/real/pai.svg',
+      url: 'https://partnershiponai.org/'
     },
-    {
-      title: 'Enhancing International Cooperation',
-      description: 'Aims to strengthen global collaboration to address and solve complex challenges.',
-      icon: Globe2,
+    { 
+      name: 'AI Now Institute', 
+      logo: '/images/partners/real/ai-now.svg',
+      url: 'https://ainowinstitute.org/'
     },
-    {
-      title: 'Driving Innovative Solutions',
-      description: 'Focuses on creating innovative approaches to tackle global issues effectively.',
-      icon: Lightbulb,
+    { 
+      name: 'IEEE', 
+      logo: '/images/partners/real/ieee.svg',
+      url: 'https://www.ieee.org/'
     },
   ];
 
   return (
     <>
-      {/* Hero Section with Split Design */}
-      <section className="min-h-screen grid lg:grid-cols-2">
-        {/* Left Side - Image */}
-        <div className="relative overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-            alt="Team collaboration"
-            fill
-            className="object-cover"
-            priority
+      <PageHeader
+        title="About Us"
+        description="Shaping the future of AI governance and ethics through research, collaboration, and innovation"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'About', href: '/about' },
+        ]}
+      />
+
+      {/* Mission & Values */}
+      <section className="py-10">
+        <div className="container">
+          <SectionHeader
+            title="Our Values"
+            subtitle="The principles that guide our work and research"
+            className="mb-8"
           />
-          <div className="absolute inset-0 bg-black/20" />
-        </div>
-
-        {/* Right Side - Content */}
-        <div className="bg-primary text-primary-foreground p-8 lg:p-16 flex items-center">
-          <div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">Who Are We</h1>
-            <p className="text-xl mb-8 leading-relaxed">
-              Future Shift Labs, established in 2024, is devoted towards a sustainable and equitable future,
-              valuing openness, diversity, and innovation. Our core goal is to make India a global leader by
-              offering research, strategic consulting, and training on AI&apos;s impact, while fostering
-              collaboration among researchers, policymakers, and industry leaders for responsible AI
-              development.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section with Description */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold mb-6">Our Values</h2>
-            <p className="text-lg text-muted-foreground">
-              At Future Shift Labs, we embrace deep standards of openness, diversity and innovation by engaging in a
-              wide range of perspectives, addressing complex challenges more holistically, by ensuring our initiatives
-              reflect the multifaceted nature of global issues.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value) => (
-              <Card key={value.title} className="group p-8 hover:shadow-xl transition-all duration-300">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                    <value.icon className="w-8 h-8" />
-                  </div>
+              <Card key={value.title} className={`p-6 ${value.bgColor}`}>
+                <div className={`w-12 h-12 rounded-lg ${value.bgColor} flex items-center justify-center mb-4`}>
+                  <value.icon className={`w-6 h-6 ${value.iconColor}`} />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4">{value.title}</h3>
-                <p className="text-muted-foreground">{value.description}</p>
+                <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
+                <p className="text-muted-foreground text-sm">{value.description}</p>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Grid with AI Image */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Services & Initiatives</h2>
-              <p className="text-lg text-muted-foreground">
-                Through strategic consulting and public engagement, we advocate for positive AI applications 
-                that address global challenges. Our comprehensive approach ensures effective solutions and 
-                meaningful impact.
-              </p>
-            </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-              <Image
-                src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-                alt="AI and Justice"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <Card key={service.title} className="group p-8 hover:shadow-xl transition-all duration-300">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                    <service.icon className="w-8 h-8" />
-                  </div>
+      {/* Partners */}
+      <section className="py-10 bg-slate-50 dark:bg-slate-900">
+        <div className="container">
+          <SectionHeader
+            title="Our Partners"
+            subtitle="Collaborating with leading institutions to drive innovation in AI governance"
+            className="mb-8"
+          />
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {partners.map((partner) => (
+              <Link
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 group"
+              >
+                <div className="relative h-12 w-full mb-3">
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    fill
+                    style={{ objectFit: 'contain' }}
+                  />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </Card>
+                <span className="text-center text-sm font-medium text-slate-600 dark:text-slate-300">
+                  {partner.name}
+                </span>
+                <div className="mt-2 flex items-center text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span>Visit site</span>
+                  <ArrowRight className="ml-1 h-3 w-3" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Join Us in Shaping the Future of AI</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Together, we can create a more sustainable and equitable future through responsible AI development
-            and implementation. Let&apos;s collaborate to make a difference.
+      {/* CTA */}
+      <section className="py-20 bg-gradient-to-br from-primary/80 to-primary">
+        <div className="container text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Join Us in Shaping the Future of AI
+          </h2>
+          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+            Whether you're a researcher, policymaker, or industry expert, there are many ways to contribute to our mission.
           </p>
-          <Button 
-            size="lg" 
-            variant="white" 
-            className="group rounded-md"
-            asChild
-          >
-            <a href="/contact">
+          <Button asChild variant="secondary" size="lg" className="group">
+            <Link href="/contact">
               Get Involved
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+              <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
           </Button>
         </div>
       </section>

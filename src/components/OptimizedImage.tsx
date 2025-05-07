@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image, { ImageProps } from 'next/image';
 import { cn } from '@/lib/utils';
+import { ImageOff } from 'lucide-react';
 
 export interface OptimizedImageProps extends Omit<ImageProps, 'onLoadingComplete'> {
   /**
@@ -34,6 +35,32 @@ export interface OptimizedImageProps extends Omit<ImageProps, 'onLoadingComplete
    * Whether to render a shimmer placeholder
    */
   shimmer?: boolean;
+  
+  /**
+   * Makes Next.js generate the image at build time instead of on-demand
+   * Use this for hero and other critical images
+   */
+  generateStatically?: boolean;
+  
+  /**
+   * URL to use as fallback if the primary image fails to load
+   */
+  fallbackSrc?: string;
+  
+  /**
+   * Custom component or element to show when image fails to load
+   */
+  errorComponent?: React.ReactNode;
+  
+  /**
+   * Number of times to retry loading the image
+   */
+  retryCount?: number;
+  
+  /**
+   * Alt text to display for accessibility
+   */
+  alt: string;
 }
 
 export function OptimizedImage({
@@ -49,17 +76,25 @@ export function OptimizedImage({
   isAboveFold = false,
   wrapperClassName,
   shimmer = false,
+  generateStatically = false,
+  fallbackSrc,
+  errorComponent,
+  retryCount = 0,
   quality = 85, // Higher quality default
   sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw', // Responsive sizes default
   ...props
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [retries, setRetries] = useState(0);
   
   // Reset loading state when src changes
   useEffect(() => {
     setIsLoaded(false);
     setIsError(false);
+    setCurrentSrc(src);
+    setRetries(0);
   }, [src]);
   
   // Determine placeholder settings
@@ -70,14 +105,28 @@ export function OptimizedImage({
   const priority = isAboveFold ? true : props.priority;
   
   // Handle loading complete
-  const handleLoadingComplete = () => {
+  const handleLoadingComplete = useCallback(() => {
     setIsLoaded(true);
-  };
+  }, []);
   
-  // Handle loading error
-  const handleError = () => {
-    setIsError(true);
-  };
+  // Handle loading error with retry and fallback logic
+  const handleError = useCallback(() => {
+    if (retries < retryCount) {
+      // Retry loading the same image
+      setRetries(prev => prev + 1);
+      // Add a cache buster to the URL to bypass browser cache
+      const currentSrcString = typeof currentSrc === 'string' ? currentSrc : '';
+      const cacheBuster = `${currentSrcString.includes('?') ? '&' : '?'}_retry=${Date.now()}`;
+      setCurrentSrc(`${typeof src === 'string' ? src : ''}${cacheBuster}`);
+    } else if (fallbackSrc && currentSrc !== fallbackSrc) {
+      // Try the fallback image if available and not already using it
+      setCurrentSrc(fallbackSrc);
+      setRetries(0);
+    } else {
+      // If all retries and fallbacks fail, show error state
+      setIsError(true);
+    }
+  }, [retries, retryCount, currentSrc, fallbackSrc, src]);
   
   // Create shimmer SVG for placeholder
   const shimmerSvg = `
@@ -99,50 +148,76 @@ export function OptimizedImage({
     </svg>
   `;
   
-  const shimmerDataUrl = `data:image/svg+xml;base64,${Buffer.from(shimmerSvg).toString('base64')}`;
+  const shimmerDataUrl = typeof window !== 'undefined' ? 
+    `data:image/svg+xml;base64,${Buffer.from(shimmerSvg).toString('base64')}` : 
+    undefined;
   
   // Apply shimmer effect if enabled
-  const blurDataURL = shimmer ? shimmerDataUrl : props.blurDataURL;
+  const blurDataURL = shimmer && shimmerDataUrl ? shimmerDataUrl : props.blurDataURL;
+  
+  // Error component to show when image fails to load
+  const DefaultErrorComponent = (
+    <div className="flex items-center justify-center w-full h-full bg-slate-100 dark:bg-slate-800 rounded-md">
+      <div className="flex flex-col items-center text-slate-400 dark:text-slate-500 p-4 text-center">
+        <ImageOff className="h-6 w-6 mb-2" />
+        <p className="text-xs">{alt || 'Image not available'}</p>
+      </div>
+    </div>
+  );
+  
+  // If error state and no custom error component, show default error component
+  if (isError) {
+    return (
+      <div 
+        className={cn(
+          'relative overflow-hidden',
+          wrapperClassName,
+        )}
+        style={{
+          width: fill ? '100%' : width,
+          height: fill ? '100%' : height,
+          ...placeholderStyle
+        }}
+      >
+        {errorComponent || DefaultErrorComponent}
+      </div>
+    );
+  }
   
   return (
     <div 
       className={cn(
-        'relative overflow-hidden', 
+        'relative overflow-hidden',
         wrapperClassName,
-        isError ? 'bg-gray-200' : ''
-      )}
-      style={{
-        ...placeholderStyle,
-        width: fill ? '100%' : width,
-        height: fill ? '100%' : height,
-      }}
+        shimmer && !isLoaded && 'animate-pulse bg-slate-200 dark:bg-slate-700'
+      )} 
+      style={placeholderStyle}
     >
-      {!isError ? (
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          fill={fill}
-          quality={quality}
-          sizes={sizes}
-          priority={priority}
-          placeholder={placeholder}
-          blurDataURL={blurDataURL}
-          onLoadingComplete={handleLoadingComplete}
-          onError={handleError}
-          className={cn(
-            className,
-            fadeIn && 'transition-opacity duration-500',
-            fadeIn && !isLoaded ? 'opacity-0' : 'opacity-100'
-          )}
-          {...props}
-        />
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 text-gray-400 text-sm">
-          {alt || 'Image failed to load'}
-        </div>
-      )}
+      <Image
+        src={currentSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        fill={fill}
+        className={cn(
+          className,
+          fadeIn && 'transition-opacity duration-500',
+          fadeIn && !isLoaded && 'opacity-0',
+          fadeIn && isLoaded && 'opacity-100',
+          // Add GPU acceleration for smoother animations
+          'transform-gpu will-change-[opacity]'
+        )}
+        quality={quality}
+        sizes={sizes}
+        priority={priority}
+        onLoad={handleLoadingComplete}
+        onError={handleError}
+        loading={isAboveFold ? 'eager' : 'lazy'}
+        fetchPriority={isAboveFold ? 'high' : 'auto'}
+        {...props}
+        blurDataURL={blurDataURL}
+        placeholder={placeholder}
+      />
     </div>
   );
 } 

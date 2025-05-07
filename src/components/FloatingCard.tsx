@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
@@ -9,9 +11,9 @@ type FloatingCardProps = {
   href?: string;
   className?: string;
   animationDelay?: string;
-  animationStyle?: "float" | "bounce" | "scale" | "slide" | "none";
+  animationStyle?: "float" | "bounce" | "scale" | "slide" | "float-3d" | "sway" | "none";
   variant?: "default" | "primary" | "secondary" | "outlined" | "glass" | "frosted";
-  hoverEffect?: "lift" | "glow" | "scale" | "none";
+  hoverEffect?: "lift" | "glow" | "scale" | "tilt" | "glow-border" | "none";
 };
 
 export function FloatingCard({
@@ -21,25 +23,29 @@ export function FloatingCard({
   href,
   className,
   animationDelay,
-  animationStyle = "float",
+  animationStyle = "float-3d",
   variant = "default",
-  hoverEffect = "lift",
+  hoverEffect = "tilt",
 }: FloatingCardProps) {
   // Animation class based on style
   const animationClass = React.useMemo(() => {
     switch (animationStyle) {
       case "float":
         return "animate-float";
+      case "float-3d":
+        return "animate-float-3d";
       case "bounce":
         return "animate-bounce";
       case "scale":
         return "animate-scale-up";
       case "slide":
         return "animate-slide-in-bottom";
+      case "sway":
+        return "animate-sway";
       case "none":
         return "";
       default:
-        return "animate-float";
+        return "animate-float-3d";
     }
   }, [animationStyle]);
 
@@ -70,6 +76,10 @@ export function FloatingCard({
         return "transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20";
       case "scale":
         return "transition-all duration-300 hover:scale-105";
+      case "tilt":
+        return "transition-all duration-300 transform-gpu hover:shadow-xl hover:rotate-1 hover:-translate-y-1 hover:translate-x-0.5";
+      case "glow-border":
+        return "transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:border-primary/40";
       case "none":
         return "";
       default:
@@ -77,8 +87,41 @@ export function FloatingCard({
     }
   }, [hoverEffect]);
 
+  // Mouse tracking for interactive effects
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+  const cardRef = React.useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (cardRef.current && hoverEffect === "tilt") {
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setMousePosition({ x, y });
+    }
+  };
+
+  const getTransformStyle = () => {
+    if (hoverEffect !== "tilt" || !cardRef.current) return {};
+    
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Calculate tilt angle (max 5 degrees)
+    const tiltX = ((mousePosition.y - centerY) / centerY) * 5;
+    const tiltY = ((centerX - mousePosition.x) / centerX) * 5;
+    
+    return {
+      transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+      transition: 'transform 0.1s ease'
+    };
+  };
+
   const content = (
     <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      style={getTransformStyle()}
       className={cn(
         "rounded-xl p-5 shadow-lg relative overflow-hidden",
         variantClass,
@@ -88,16 +131,17 @@ export function FloatingCard({
         className
       )}
     >
-      {/* Decorative elements */}
-      <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full bg-white/5 z-0"></div>
-      <div className="absolute -bottom-8 -left-8 w-16 h-16 rounded-full bg-white/5 z-0"></div>
+      {/* Enhanced decorative elements */}
+      <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full bg-white/5 z-0 animate-pulse-slow"></div>
+      <div className="absolute -bottom-8 -left-8 w-16 h-16 rounded-full bg-white/5 z-0 animate-pulse-slower"></div>
+      <div className="absolute top-1/2 right-1/3 w-12 h-12 rounded-full bg-primary/5 blur-xl z-0 animate-float"></div>
       
       {/* Content container with improved spacing */}
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-3">
           {icon && (
             <div className={cn(
-              "p-2 rounded-full",
+              "p-2 rounded-full transition-all duration-300 group-hover:scale-110",
               variant === "primary" || variant === "secondary" 
                 ? "bg-white/10 text-white" 
                 : "bg-blue-400/10 text-blue-400"
@@ -126,7 +170,7 @@ export function FloatingCard({
 
   if (href) {
     return (
-      <Link href={href} className="block">
+      <Link href={href} className="block group">
         {content}
       </Link>
     );

@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --font-sans: var(--font-inter);
+    --font-mono: var(--font-roboto-mono);
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 
@@ -33,6 +35,11 @@
     --ring: 142.1 76.2% 36.3%;
  
     --radius: 0.5rem;
+
+    /* Scrollbar colors */
+    --scrollbar-track: 0 0% 95%;
+    --scrollbar-thumb: 221.2 83.2% 53.3%;
+    --scrollbar-thumb-hover: 221.2 83.2% 60%;
   }
  
   .dark {
@@ -63,6 +70,11 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 142.4 71.8% 29.2%;
+
+    /* Scrollbar colors for dark mode */
+    --scrollbar-track: 240 10% 10%;
+    --scrollbar-thumb: 221.2 83.2% 40%;
+    --scrollbar-thumb-hover: 221.2 83.2% 45%;
   }
 }
  
@@ -78,10 +90,18 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
   
   body {
     @apply bg-background text-foreground;
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  /* Prevent scrolling when loader is displayed */
+  body.loading {
+    overflow: hidden;
   }
   
   main {
@@ -89,6 +109,89 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    opacity: 0;
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  /* Custom Scrollbar - Basic styling for all elements */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--scrollbar-track) / 0.1);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--scrollbar-thumb) / 0.8);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--scrollbar-thumb-hover));
+    border-width: 2px;
+  }
+
+  /* Modern fancy scrollbar - applied to body with .scrollbar-fancy class */
+  .scrollbar-fancy::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+  
+  .scrollbar-fancy::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 4px 0;
+  }
+  
+  .scrollbar-fancy::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(
+      to bottom,
+      #3b82f6 0%,
+      #8b5cf6 50%,
+      #ec4899 100%
+    );
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    transition: all 0.3s ease;
+  }
+  
+  .scrollbar-fancy::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(
+      to bottom,
+      #60a5fa 0%,
+      #a78bfa 50%,
+      #f472b6 100%
+    );
+    border-width: 2px;
+  }
+  
+  /* Firefox specific scrollbar styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--scrollbar-thumb)) transparent;
+  }
+  
+  .scrollbar-fancy {
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 transparent;
+  }
+  
+  /* Dark mode adjustments */
+  .dark .scrollbar-fancy::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(
+      to bottom,
+      #3b82f6 0%,
+      #8b5cf6 50%,
+      #ec4899 100%
+    );
+    opacity: 0.8;
   }
 }
 
@@ -159,6 +262,27 @@
     opacity: 0.8;
     transform: scale(1.05);
   }
+}
+
+/* Loader animations */
+@keyframes pulse-dot1 {
+  0%, 100% { opacity: 0.4; }
+  25% { opacity: 1; }
+}
+
+@keyframes pulse-dot2 {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-dot3 {
+  0%, 100% { opacity: 0.4; }
+  75% { opacity: 1; }
+}
+
+@keyframes spin-reverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
 }
 
 /* Additional Animations */
@@ -256,6 +380,22 @@
   animation: pulse 4s ease-in-out infinite;
 }
 
+.animate-pulse-dot1 {
+  animation: pulse-dot1 1.4s infinite ease-in-out;
+}
+
+.animate-pulse-dot2 {
+  animation: pulse-dot2 1.4s infinite ease-in-out;
+}
+
+.animate-pulse-dot3 {
+  animation: pulse-dot3 1.4s infinite ease-in-out;
+}
+
+.animate-reverse {
+  animation-direction: reverse;
+}
+
 .bg-gradient-shimmer {
   background: linear-gradient(
     90deg,
@@ -310,7 +450,7 @@
   animation-iteration-count: infinite;
 }
 
-/* Hover Effects */
+/* Hover Effects with animation */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -324,6 +464,16 @@
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
+/* Focus styles with animation */
+.focus-ring {
+  transition: box-shadow 0.2s ease, outline 0.2s ease;
+}
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary));
+}
+
 /* Section backgrounds */
 .bg-grid {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
@@ -332,6 +482,24 @@
 .dark .bg-grid {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
+
+/* Page transition effects */
+.page-transition-wrapper {
+  position: relative;
+  width: 100%;
+  opacity: 0;
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Staggered animation for list items */
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-animation > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-animation > *:nth-child(8) { animation-delay: 0.8s; }
 
 /* Responsive utilities */
 .responsive-container {
@@ -477,5 +645,73 @@
   .mobile-nav-item {
     padding: 0.5rem 0.75rem;
     margin-bottom: 0.125rem;
+  }
+}
+
+@layer utilities {
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+  .animation-delay-1500 {
+    animation-delay: 1500ms;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2000ms;
+  }
+  .animation-delay-2500 {
+    animation-delay: 2500ms;
+  }
+  .animation-delay-3000 {
+    animation-delay: 3000ms;
+  }
+  
+  /* Add hover-lift utility */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Add text gradient animation for hero section */
+  .text-gradient {
+    background-size: 200% 200%;
+  }
+  
+  .bg-gradient-shimmer {
+    background-image: linear-gradient(
+      45deg,
+      var(--primary) 0%,
+      #4f46e5 25%,
+      var(--primary) 50%,
+      #4f46e5 75%,
+      var(--primary) 100%
+    );
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 3s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { LinkButton } from '@/components/Button';
 import AuthorBio from '@/components/blog/AuthorBio';
+import { BLOG_IMAGES, PROFILE_IMAGES } from '@/lib/constants/images';
 
 // This would normally be dynamic based on the actual blog post
 export const metadata: Metadata = {
@@ -25,11 +26,11 @@ export default function BlogPostPage({ params }: BlogPostParams) {
     title: 'Why Evidence-Based Policymaking Matters',
     description: 'Exploring the importance of rigorous research and data analysis in crafting effective public policies that address real-world problems.',
     date: '2024-05-12',
-    imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80',
+    imageUrl: BLOG_IMAGES.GOVERNANCE,
     author: {
       name: 'Lisa Chen',
       title: 'Communications Director',
-      imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80',
+      imageUrl: PROFILE_IMAGES.DEFAULT_AVATAR,
       bio: 'Lisa has over 10 years of experience in policy communications and previously worked at the Brookings Institution. She specializes in translating complex policy ideas into accessible insights.',
       twitterHandle: 'lisachen_policy',
       linkedinUrl: 'https://linkedin.com/in/lisachen'

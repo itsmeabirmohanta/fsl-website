@@ -15,7 +15,64 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'source.unsplash.com',
       },
+      // Partner logo domains
+      {
+        protocol: 'https',
+        hostname: 'britishuni.edu.ge',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.squarespace-cdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.oii.ox.ac.uk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ceedigitaldemocracywatch.eu',
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      // Additional common domains for avatars and content
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placekitten.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
     ],
+    // Image optimization settings
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Add any experimental features needed for TypeScript
   typescript: {
@@ -65,7 +122,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.unsplash.com; font-src 'self' data:; connect-src 'self'; frame-src 'self'; base-uri 'self'; form-action 'self';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.unsplash.com https://britishuni.edu.ge https://*.squarespace-cdn.com https://*.oii.ox.ac.uk https://ceedigitaldemocracywatch.eu https://upload.wikimedia.org https://*.cloudinary.com https://*.googleusercontent.com https://*.amazonaws.com https://placehold.co https://via.placeholder.com https://placekitten.com https://picsum.photos; font-src 'self' data:; connect-src 'self'; frame-src 'self'; base-uri 'self'; form-action 'self';",
           }
         ],
       },

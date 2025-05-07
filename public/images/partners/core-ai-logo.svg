@@ -1,0 +1,8 @@
+<svg width="240" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="120" fill="white"/>
+  <rect x="10" y="10" width="220" height="100" rx="5" fill="#f8fafc"/>
+  <text x="120" y="65" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="28" fill="#7e22ce">Core-AI</text>
+  <circle cx="180" cy="50" r="10" fill="#a855f7"/>
+  <circle cx="60" cy="50" r="10" fill="#a855f7"/>
+  <path d="M60,85 C60,70 180,70 180,85" stroke="#a855f7" stroke-width="3" fill="none"/>
+</svg> 

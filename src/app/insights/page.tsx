@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { ArrowRight, Calendar, Clock, Tag, User2, Search, BookOpen, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
+import { BLOG_IMAGES, PROFILE_IMAGES } from '@/lib/constants/images';
 
 export const metadata: Metadata = {
   title: 'Insights | PolicyLab',
@@ -43,43 +44,49 @@ export default function InsightsPage() {
 
   const posts = [
     {
-      title: 'Education Reform in the Digital Age',
-      excerpt:
-        'How technology is reshaping education policy and creating new opportunities for learning.',
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      category: 'Education',
-      author: 'Prof. Michael Rivera',
+      title: 'The Future of AI Governance',
+      excerpt: 'Exploring emerging frameworks for AI regulation and ethical guidelines.',
+      image: BLOG_IMAGES.AI_POLICY,
+      category: 'Policy',
+      author: 'John Smith',
+      date: 'March 15, 2024',
+      readTime: '8 min read',
+      slug: 'future-of-ai-governance',
+    },
+    {
+      title: 'Digital Ethics in Practice',
+      excerpt: 'How organizations are implementing ethical frameworks in their AI development.',
+      image: BLOG_IMAGES.DIGITAL_ETHICS,
+      category: 'Ethics',
+      author: 'Sarah Johnson',
       date: 'March 10, 2024',
-      readTime: '6 min read',
-      slug: 'education-reform-digital-age',
-    },
-    {
-      title: 'Healthcare Access in Rural Communities',
-      excerpt:
-        'Examining the challenges and solutions for improving healthcare accessibility in rural areas.',
-      image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      category: 'Healthcare',
-      author: 'Dr. Sarah Chen',
-      date: 'March 8, 2024',
       readTime: '5 min read',
-      slug: 'healthcare-access-rural-communities',
+      slug: 'digital-ethics-practice',
     },
     {
-      title: 'AI Governance Framework',
-      excerpt:
-        'Proposing a comprehensive framework for regulating artificial intelligence development.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+      title: 'Innovation in AI Safety',
+      excerpt: 'New approaches to ensuring AI systems remain beneficial and controllable.',
+      image: BLOG_IMAGES.INNOVATION,
       category: 'Technology',
-      author: 'Alex Johnson',
-      date: 'March 5, 2024',
+      author: 'David Lee',
+      date: 'March 7, 2024',
       readTime: '7 min read',
-      slug: 'ai-governance-framework',
+      slug: 'innovation-ai-safety',
+    },
+    {
+      title: 'Research Methods in AI Policy',
+      excerpt: 'A comprehensive guide to studying and analyzing AI policy impacts.',
+      image: BLOG_IMAGES.RESEARCH,
+      category: 'Research',
+      author: 'Emily Chen',
+      date: 'March 5, 2024',
+      readTime: '10 min read',
+      slug: 'research-methods-ai-policy',
     },
     {
       title: 'Economic Inequality Trends',
-      excerpt:
-        'Analyzing recent trends in economic inequality and potential policy solutions.',
-      image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+      excerpt: 'Analyzing recent trends in economic inequality and potential policy solutions.',
+      image: BLOG_IMAGES.GOVERNANCE,
       category: 'Economy',
       author: 'Maria Garcia',
       date: 'March 3, 2024',

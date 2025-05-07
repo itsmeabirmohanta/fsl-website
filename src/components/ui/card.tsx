@@ -4,41 +4,17 @@ import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    variant?: "default" | "elevated" | "bordered" | "glass" | "accent"
-  }
->(({ className, variant = "default", ...props }, ref) => {
-  // Calculate variant classes
-  const variantClasses = React.useMemo(() => {
-    switch (variant) {
-      case "elevated":
-        return "bg-card text-card-foreground shadow-lg hover:shadow-xl border-t border-slate-100 dark:border-slate-800";
-      case "bordered":
-        return "bg-card text-card-foreground border-2 hover:border-primary/50";
-      case "glass":
-        return "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-card-foreground border border-white/20 dark:border-slate-700/20";
-      case "accent":
-        return "bg-card text-card-foreground border-l-4 border-primary shadow-sm";
-      default:
-        return "bg-card text-card-foreground shadow-sm";
-    }
-  }, [variant]);
-
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "rounded-xl relative overflow-hidden transition-all duration-300",
-        "after:absolute after:inset-0 after:rounded-xl after:pointer-events-none after:opacity-0 after:transition-opacity",
-        "after:bg-gradient-to-tr after:from-primary/5 after:via-primary/5 after:to-transparent",
-        "hover:after:opacity-100",
-        variantClasses,
-        className
-      )}
-      {...props}
-    />
-  );
-})
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className
+    )}
+    {...props}
+  />
+))
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<
@@ -60,7 +36,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-xl font-semibold leading-tight tracking-tight transition-colors group-hover:text-primary/90",
+      "text-2xl font-semibold leading-none tracking-tight",
       className
     )}
     {...props}
@@ -100,4 +76,4 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } 
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } 

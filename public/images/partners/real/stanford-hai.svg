@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="240" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="120" fill="white"/>
+  <g transform="translate(20, 35)">
+    <!-- Stanford HAI Logo -->
+    <text x="100" y="15" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="#8C1515">STANFORD</text>
+    <text x="100" y="40" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="24" fill="#8C1515">HAI</text>
+    
+    <!-- Stanford tree stylized element -->
+    <path d="M30,25 Q40,15 50,25 Q60,35 70,25" stroke="#8C1515" stroke-width="2" fill="none"/>
+    
+    <!-- Human + AI element -->
+    <circle cx="150" cy="25" r="10" fill="#8C1515" opacity="0.8"/>
+    <path d="M150,35 L150,50" stroke="#8C1515" stroke-width="2"/>
+    <path d="M140,40 L160,40" stroke="#8C1515" stroke-width="2"/>
+    <path d="M145,55 L150,50 L155,55" stroke="#8C1515" stroke-width="2" fill="none"/>
+    
+    <!-- Subtitle -->
+    <text x="100" y="65" text-anchor="middle" font-family="Arial" font-size="10" fill="#333333">Human-Centered Artificial Intelligence</text>
+  </g>
+</svg> 

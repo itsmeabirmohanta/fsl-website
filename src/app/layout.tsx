@@ -1,18 +1,27 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Mono } from 'next/font/google'
 import "./globals.css";
 import "./custom-animations.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+import ClientLayout from './client-layout';
+import { metadata, viewport } from './metadata';
 
-export const metadata: Metadata = {
-  title: 'PolicyLab | Think Tank & Research Center',
-  description: "A dedicated think tank working on public policy, research papers, and online events.",
-};
+// Optimize font loading for better performance
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-inter',
+})
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-roboto-mono',
+})
+
+export { metadata, viewport };
 
 export default function RootLayout({
   children,
@@ -20,20 +29,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <body className={`${inter.className} min-h-screen flex flex-col bg-background text-foreground antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
-          <Header />
-          <main className="flex-1 pt-0">
-            {children}
-          </main>
-          <Footer />
-          <Toaster />
-        </ThemeProvider>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${roboto_mono.variable}`}>
+      <body className={cn('min-h-screen bg-background font-sans antialiased', 'scrollbar-fancy')}>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   );
